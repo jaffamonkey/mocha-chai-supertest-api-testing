@@ -1,3 +1,6 @@
 var mongoose = require('mongoose');
+var config = require('../config/config');
 
-module.exports = mongoose.connect('mongodb://admin:abcd123@ds213612.mlab.com:13612/node_test', {useNewUrlParser: true});
+//var dbUrl = config.MONGO_DB_URL || '';
+
+module.exports = mongoose.connect(config.MONGO_DB_URL, {useNewUrlParser: true});
