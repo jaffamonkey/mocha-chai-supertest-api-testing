@@ -4,18 +4,18 @@ Simple API using nodejs, express, and mongoDB with test suite built using mocha,
 
 Endpoints
 -------------------------------------------------------------
-/api/car - GET
+GET /api/car - 
 Retrieve all calls
 
-/api/car/:id - GET
+GET /api/car/:id -
 Retrieve call with id
 
-/api/car - POST
+POST /api/car -
 Add new car
 Request body:
-make: string, required
-model: string, required
-colour: string, required
+1. make: string, required
+2. model: string, required
+3. colour: string, required
 
 
 Initial setup
