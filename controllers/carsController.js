@@ -1,10 +1,11 @@
+var mongoose = require('mongoose');
 var Car = require('../models/car');
 
 // Show all cars
 module.exports.index = function (req, res) {
 	Car.find(function (err, docs) {
 		if (err) {
-			res.json({message: "Could not get docs", error: err});
+			res.status(400).json({message: "Could not get docs", error: err});
 		} else {
 			res.json({cars: docs});
 		}
@@ -13,13 +14,17 @@ module.exports.index = function (req, res) {
 
 // Show particular car
 module.exports.show = function (req, res) {
-	Car.findById(req.params.id, function (err, doc) {
-		if (err) {
-			res.json({message: "Could not find doc", error: err});
-		} else {
-			res.json({car: doc});
-		}
-	});
+	if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+		Car.findById(req.params.id, function (err, doc) {
+			if (err) {
+				res.status(400).json({message: "Could not find doc", error: err});
+			} else {
+				res.json({car: doc});
+			}
+		});
+	} else {
+		res.status(400).json({message: "Could not find doc", error: "ID is not of valid format"});
+	}
 };
 
 // Create new car
@@ -30,7 +35,7 @@ module.exports.create = function (req, res) {
 	car.colour = req.body.colour;
 	car.save(function (err, savedDoc) {
 		if (err) {
-			res.json({message: "Could not save car", error: err});
+			res.status(400).json({message: "Could not save car", error: err});
 		} else {
 			res.json({message: "Document saved", savedDoc: savedDoc});
 		}
