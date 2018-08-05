@@ -31,3 +31,6 @@ var port = process.env.PORT || 3000;
 app.listen(port, function () {
 	console.log("Server started and listening on " + port);
 });
+
+// For unit testing
+module.exports = app;
