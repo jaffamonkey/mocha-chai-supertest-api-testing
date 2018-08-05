@@ -7,7 +7,7 @@ module.exports.index = function (req, res) {
 		if (err) {
 			res.status(400).json({message: "Could not get docs", error: err});
 		} else {
-			res.json({cars: docs});
+			res.json(docs);
 		}
 	});
 };
@@ -19,11 +19,11 @@ module.exports.show = function (req, res) {
 			if (err) {
 				res.status(400).json({message: "Could not find doc", error: err});
 			} else {
-				res.json({car: doc});
+				res.json(doc);
 			}
 		});
 	} else {
-		res.status(400).json({message: "Could not find doc", error: "ID is not of valid format"});
+		res.status(400).json(null);
 	}
 };
 
@@ -37,6 +37,7 @@ module.exports.create = function (req, res) {
 		if (err) {
 			res.status(400).json({message: "Could not save car", error: err});
 		} else {
+
 			res.json({message: "Document saved", savedDoc: savedDoc});
 		}
 	});
