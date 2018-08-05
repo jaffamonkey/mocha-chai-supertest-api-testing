@@ -21,8 +21,8 @@ describe('GET /car', function () {
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(Array.isArray(res.body)).toBe(true);
-				expect(res.body.length).toBe(0);
+				expect(Array.isArray(res.body)).toBe(true); // Response body should be array
+				expect(res.body.length).toBe(0); // Array should be empty
 			})
 			.end(function (err, res) {
 				if (err) return done(err);					
@@ -38,7 +38,7 @@ describe('GET /car/:id', function () {
 			.expect(400)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(res.body).toBeNull();
+				expect(res.body).toBeNull(); // Null response to be received
 			})
 			.end(function (err, res) {
 				if (err) return done(err);					
@@ -64,8 +64,8 @@ describe('GET /car/:id', function () {
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
 				expect(typeof res.body).toBe('object');
-				expect(res.body[0]).toHaveProperty("make");
-				expect(res.body[0].make).toBe("test");
+				expect(res.body[0]).toHaveProperty("make"); // Checking for one of the properties added before
+				expect(res.body[0].make).toBe("test"); // Checking for the exact value of the property
 			})
 			.end(function (err, res) {
 				if (err) return done(err);					
@@ -87,7 +87,7 @@ describe('POST /car', function () {
 			.expect(400)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(res.body).toHaveProperty('error');
+				expect(res.body).toHaveProperty('error'); // Checking for error property to indicate write failed
 			})
 			.end(function (err, res) {
 				if (err) return done(err);
@@ -106,7 +106,7 @@ describe('POST /car', function () {
 			.expect(400)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(res.body).toHaveProperty('error');
+				expect(res.body).toHaveProperty('error'); // Checking for error property to indicate write failed
 			})
 			.end(function (err, res) {
 				if (err) return done(err);
@@ -126,7 +126,7 @@ describe('POST /car', function () {
 			.expect(400)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(res.body).toHaveProperty('error');
+				expect(res.body).toHaveProperty('error'); // Checking for error property to indicate write failed
 			})
 			.end(function (err, res) {
 				if (err) return done(err);
@@ -146,17 +146,18 @@ describe('POST /car', function () {
 			.expect(200)
 			.expect('Content-Type', /json/)
 			.expect(function (res) {
-				expect(res.body).not.toHaveProperty('error');
-				expect(res.body).toHaveProperty('savedDoc');
+				expect(res.body).not.toHaveProperty('error'); // Checking there is no error property to indicate write success
+				expect(res.body).toHaveProperty('savedDoc'); // Checking if the savedDoc is returned
 
 			})
 			.end(function (err, res) {
 				if (err) return done(err);
+				// Reading the DB to verify write succeeded
 				Car.find(function (err, docs) {
 					if (err) return done(err);
 					expect(docs.length).toBe(1);
-					expect(docs[0]).toHaveProperty("make");
-					expect(docs[0].make).toBe("test make");
+					expect(docs[0]).toHaveProperty("make"); // Checking for one of the properties added before 
+					expect(docs[0].make).toBe("test make"); // Checking for the exact value of the property
 					done();
 				});
 			});

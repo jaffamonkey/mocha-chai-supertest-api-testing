@@ -15,13 +15,13 @@ app.use(bodyParser.json());
 // Configure app to use body-parser with urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Setup application modules
-var routesWeb = require('./routes/routes-web');
-var routesApi = require('./routes/routes-api');
+// Setup application routes
+//var routesWeb = require('./routes/routesWeb');
+var routesApi = require('./routes/routesApi');
 
 // Register router with app
 app.use('/api', routesApi);
-app.use('/', routesWeb);
+//app.use('/', routesWeb);
 
 
 // Get PORT env var or set to default 3000
