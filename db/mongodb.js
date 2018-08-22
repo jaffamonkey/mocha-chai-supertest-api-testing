@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var config = require('../config/config');
+var config = require('../config/config.js');
 
 //var dbUrl = config.MONGO_DB_URL || '';
 
