@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha tests/**/*.test.js"
   },
-  "author": "Tony John",
-  "license": "ISC",
+  "author": "jaffamonkey",
+  "license": "GPL",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
