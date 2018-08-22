@@ -2,6 +2,13 @@ _Simple API using nodejs, express, and mongoDB with test suite built using mocha
 
 ## Steps
 
+### Install Mongo
+
+```
+$ brew update
+$ brew install mongodb
+```
+
 ### Start Mongo server
 ```
 $ mongod
